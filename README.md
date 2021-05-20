@@ -2,7 +2,7 @@
 UAV pixhawk4-ROS-Ardupilot navigation
 
 ## Cartographer
-online SLAM with TG15
+1) Online SLAM with TG15
 ```
 
 ```
