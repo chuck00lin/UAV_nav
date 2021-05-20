@@ -19,7 +19,7 @@
 
   <node name="cartographer_node" pkg="cartographer_ros"
       type="cartographer_node" args="
-          -configuration_directory $(find cartographer_ros)/configuration_files
+          -configuration_directory $(find uav_nav)/configuration_files
           -configuration_basename uav_bag_to_map.lua"
       output="screen">
     <remap from="scan" to="scan" />
