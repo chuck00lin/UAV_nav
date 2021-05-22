@@ -11,6 +11,8 @@ sudo apt-get install ros-noetic-amcl
 
 # check if installed: ls /opt/ros/noetic/lib/{find your package}
 ```
+- git clone to your ROS workspace
+- catkin build uav_sim
 
 ## Usage
 ### Cartographer
@@ -67,4 +69,11 @@ check, if nothing come up than success
 ```
 python
 import cv2
+```
+## Web image view(for ipad)
+
+```
+sudo apt-get install ros-noetic-async-web-server-cpp
+git clone https://github.com/RobotWebTools/web_video_server
+catkin build web_video_server
 ```
