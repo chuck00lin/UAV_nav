@@ -71,9 +71,20 @@ python
 import cv2
 ```
 ## Web image view(for ipad)
-
+install
 ```
 sudo apt-get install ros-noetic-async-web-server-cpp
 git clone https://github.com/RobotWebTools/web_video_server
 catkin build web_video_server
+```
+usage-rpi
+```
+#plugin usb, check device with :v4l2-ctl --list-devices
+roslaunch uav_nav usb_cam_test_video1.launch
+rosrun web_video_server web_video_server
+```
+usage-client
+```
+ssh -L 8080:localhost:8080 pi4 #host ip
+http://localhost:8080/stream?topic=/usb_cam/image_raw
 ```
