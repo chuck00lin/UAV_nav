@@ -81,6 +81,10 @@ public:
     std::vector<std::vector<cv::Point2f> > corners;
     cv::aruco::detectMarkers(src, dictionary, corners, ids);
     // if at least one marker detected
+    // corners structure: vector of dtected markers < vector of points >
+    // id0 : points1, point2, point3, point4
+    // id1 : points1, point2, point3, point4 ...
+
     if (ids.size() > 0){
         cv::aruco::drawDetectedMarkers(dst, corners, ids);
 
