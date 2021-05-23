@@ -39,36 +39,26 @@ sudo apt install libgmock-dev
 - Cartographer sstatic landmark
 - Aruco - detect
 
-### Opencv 4.5.2
+### ~~Opencv 4.5.2~~ Opencv 4.2 by noetic
 my_env
-- python 2.7.18
+~~ python 2.7.18~~ (purged)
 - python 3.8.5
 - pip 21.1 (python3.8)
-depencency
 
+find opencv 
+pkg-config --modversion opencv4 : ```4.2.0```
+pkg-config --cflags opencv4: ```-I/usr/include/opencv4/opencv -I/usr/include/opencv4```
+pkg-config --libs opencv4: ```(should show up libs file)```
+check Cmake variable: 1) find it ```dpkg -L libopencv-dev | grep cmake``` 2) take a look
+ref:
+https://answers.ros.org/question/369316/finding-opencv-paths-in-ros-builds/
+https://answers.ros.org/question/237494/fatal-error-rosrosh-no-such-file-or-directory/
 ```
-sudo apt-get update
-sudo apt-get install build-essential
-sudo apt-get install libgtk2.0-dev
-sudo apt-get install pkg-config
-sudo apt-get install python-dev python-numpy python3-dev python3-numpy
-sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libjpeg-dev libpng-dev libtiff-dev
+**ROS-opencv**
+dependency
 ```
-install
-```
-mkdir opencv
-cd opencv
-git clone https://github.com/opencv/opencv.git
-mkdir build && cd build
-cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local ..
-make -j4
-sudo make install
-sudo ldconfig #動態連結庫
-```
-check, if nothing come up than success
-```
-python
-import cv2
+sudo apt-get install ros-noetic-image-transport
+sudo apt-get install ros-noetic-cv-bridge
 ```
 ## Web image view(for ipad)
 install
