@@ -39,21 +39,24 @@ sudo apt install libgmock-dev
 - Cartographer sstatic landmark
 - Aruco - detect
 
-### ~~Opencv 4.5.2~~ Opencv 4.2 by noetic
+### Opencv 4.2 by noetic
 my_env
-~~ python 2.7.18~~ (purged)
+~~python 2.7.18~~ (purged)
 - python 3.8.5
 - pip 21.1 (python3.8)
 
-find opencv 
-pkg-config --modversion opencv4 : ```4.2.0```
-pkg-config --cflags opencv4: ```-I/usr/include/opencv4/opencv -I/usr/include/opencv4```
-pkg-config --libs opencv4: ```(should show up libs file)```
-check Cmake variable: 1) find it ```dpkg -L libopencv-dev | grep cmake``` 2) take a look
+find opencv
+  pkg-config --modversion opencv4 : ```4.2.0```
+  pkg-config --cflags opencv4: ```-I/usr/include/opencv4/opencv -I/usr/include/opencv4```
+  pkg-config --libs opencv4: ```(should show up libs file)```
+check Cmake variable: 
+1) find it ```dpkg -L libopencv-dev | grep cmake``` 
+2) take a look
+
 ref:
 https://answers.ros.org/question/369316/finding-opencv-paths-in-ros-builds/
 https://answers.ros.org/question/237494/fatal-error-rosrosh-no-such-file-or-directory/
-```
+
 **ROS-opencv**
 dependency
 ```
