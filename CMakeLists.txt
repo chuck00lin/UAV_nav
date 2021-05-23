@@ -43,3 +43,7 @@ install(DIRECTORY launch configuration_files
 add_executable(canny_edge_sol src/canny_edge_sol.cpp)
 target_link_libraries(canny_edge_sol ${catkin_LIBRARIES} ${OpenCV_LIBS} ${OpenCV_INCLUDE_DIRS})
 
+#--aruco_detect--
+add_executable(aruco_detect src/aruco_detect.cpp)
+target_link_libraries(aruco_detect ${catkin_LIBRARIES} ${OpenCV_LIBS} ${OpenCV_INCLUDE_DIRS})
+

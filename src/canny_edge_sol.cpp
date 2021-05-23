@@ -29,14 +29,14 @@ public:
       &ImageConverter::imageCb, this);
     image_pub_ = it_.advertise("/image_converter/output_video", 1);
 
-    cv::namedWindow("source");
-    cv::namedWindow("canny");
+   //cv::namedWindow("source");
+   //cv::namedWindow("canny");
   }
 
   ~ImageConverter()
   {
-    cv::destroyWindow("source");
-    cv::destroyWindow("canny");
+   // cv::destroyWindow("source");
+   // cv::destroyWindow("canny");
   }
 
   void imageCb(const sensor_msgs::ImageConstPtr& msg)
@@ -58,9 +58,9 @@ public:
     cv::Canny( src, dst, 0, 0, 3 );
 
     // Update GUI Window
-    cv::imshow("source", src);
-    cv::imshow("canny", dst);
-    cv::waitKey(3);
+    //cv::imshow("source", src);
+    //cv::imshow("canny", dst);
+    //cv::waitKey(3);
 
     sensor_msgs::ImagePtr msg_out = cv_bridge::CvImage(std_msgs::Header(), "mono8", dst).toImageMsg();
     // Output modified video stream
