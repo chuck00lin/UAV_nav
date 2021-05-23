@@ -1,8 +1,8 @@
 # Issues i've met 
-## Can't successfully catkin build 
+## [1] Can't successfully catkin build 
 
-###OPENCV can't find (sloved) 
-solution:  
+### OPENCV can't find (sloved) 
+:ok_hand:solution:  
 > right Cmakelist and package.xml file 
  
 - install opencv  
@@ -23,7 +23,7 @@ find it dpkg -L libopencv-dev | grep cmake
 take a look 
 
 ### Python version was wrong (solved)
-solution:
+:ok_hand:solution:
 > purge python2 (maybe not a good way)  
 > switch to python3
 
