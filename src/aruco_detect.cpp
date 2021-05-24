@@ -116,8 +116,8 @@ public:
 	     marker_cent.y<center.y+restrict){
 	     if_cent=true;
 	  }
-	  std::string label = "d1:" + std::to_string(dist1) + "d2:"+ std::to_string(dist2)
-		  + "cent:"+ std::to_string(marker_cent.x)+","+std::to_string(marker_cent.y);
+	  // std::string label = "d1:" + std::to_string(dist1) + "d2:"+ std::to_string(dist2)
+	  //	  + "cent:"+ std::to_string(marker_cent.x)+","+std::to_string(marker_cent.y);
 	  
 	  float res=dist1/dist2;
 	  std::string label = "res:"+ std::to_string(res)+
