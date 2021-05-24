@@ -72,7 +72,7 @@ public:
       return;
     }
 
-    // ----- Run Aruco detector on image ----- 
+    // ----- < Run Aruco detector on image ----- 
     cv::Mat src = cv_ptr->image;
     cv::Mat dst;
     cv::Ptr<cv::aruco::Dictionary> dictionary = cv::aruco::getPredefinedDictionary(cv::aruco::DICT_6X6_250);
@@ -80,6 +80,18 @@ public:
     std::vector<int> ids;
     std::vector<std::vector<cv::Point2f> > corners;
     cv::aruco::detectMarkers(src, dictionary, corners, ids);
+
+    // ---- << center of image ----
+    int cols = dst.cols;
+    int rows = dst.rows;
+    cv::Point center= cv::Point(cols/2,rows/2);
+    int restrict =30;
+    cv::rectangle( dst,
+        cv::Point(center.x-restrict,center.y+restrict),
+        cv::Point(center.x+restrict,center.y-restrict),
+        cv::Scalar( 0, 255, 255 ));
+    // ---- end >> ----
+    
     // if at least one marker detected
     // corners structure: vector of dtected markers < vector of points >
     // id0 : points1, point2, point3, point4
@@ -94,19 +106,34 @@ public:
 	  cv::Point2f diff2= corners[i][1]-corners[i][2];
 	  dist1= cv::sqrt(diff1.x*diff1.x + diff1.y*diff1.y);
           dist2= cv::sqrt(diff2.x*diff2.x + diff2.y*diff2.y); 
-
-	  std::string label = "d1:" + std::to_string(dist1) + "d2:"+ std::to_string(dist2);
+          
+	  cv::Point2f marker_cent= (corners[i][0]+corners[i][2])/2;
+	  //marker_cent= cv::Point2f(marker_cent.y/2,marker_cent.x/2);
+	  bool if_cent=false;
+	  if(marker_cent.x>center.x-restrict &&
+             marker_cent.x<center.x+restrict &&
+	     marker_cent.y>center.y-restrict &&
+	     marker_cent.y<center.y+restrict){
+	     if_cent=true;
+	  }
+	  std::string label = "d1:" + std::to_string(dist1) + "d2:"+ std::to_string(dist2)
+		  + "cent:"+ std::to_string(marker_cent.x)+","+std::to_string(marker_cent.y);
+	  
 	  float res=dist1/dist2;
-	  if(res>0.9&&res<1.1){
+	  std::string label = "res:"+ std::to_string(res)+
+            "cent:"+ std::to_string(marker_cent.x)+","+std::to_string(marker_cent.y);
+	  if(res>0.97&&res<1.03){
 	    cv::putText(dst,label,cv::Point(10, 15),cv::FONT_HERSHEY_SIMPLEX,0.5, cv::Scalar(0, 255, 0));
+	    if(if_cent)
+	      cv::putText(dst,label,cv::Point(10, 15),cv::FONT_HERSHEY_SIMPLEX,0.5, cv::Scalar(255, 0, 0)); 
 	  }
 	  else{
-	    cv::putText(dst,label,cv::Point(10, 15),cv::FONT_HERSHEY_SIMPLEX,0.5, cv::Scalar(255, 0, 0));
+	    cv::putText(dst,label,cv::Point(10, 15),cv::FONT_HERSHEY_SIMPLEX,0.5, cv::Scalar(0, 0, 255));
 	  }
 	}
     }
 
-    // ----- Aruco end ----
+    // ----- Aruco end >----
 
     // Update GUI Window
     //cv::imshow("source", src);

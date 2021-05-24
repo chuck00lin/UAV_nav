@@ -21,6 +21,13 @@ sudo apt-get install ros-noetic-amcl
 roslaunch uav_nav uav_bag_to_map.launch bag_filename:=${HOME}/Document/bagfiles/2021-04-02-10-40-04.bag
 
 ```
+### Aruco Detect
+1) Usb cam with web_video_server
+```
+roslaunch uav_nav usb_cam_test_video0.launch
+rosrun uav_nav aruco_detect
+rosrun web_video_server web_video_server
+```
 
 ## Error Shooting
 - Cartographer_ros CMake Error:
@@ -37,7 +44,7 @@ sudo apt install libgmock-dev
 
 ## Working
 - Cartographer sstatic landmark
-- Aruco - detect
+- Aruco - detect (todo: ros topic 10Hz,camera calibration )
 
 ### Opencv
 **ROS-opencv**

@@ -42,3 +42,19 @@ ref:
 https://www.fosslinux.com/39384/switching-between-python-2-and-3-versions-on-ubuntu-20-04.htm 
 https://stackoverflow.com/questions/15291500/i-have-2-versions-of-python-installed-but-cmake-is-using-older-version-how-do
 
+## [2]OPENCV and ROS
+### ROS image topic convert (solved)
+:ok_hand:solution:
+> use cv_bridge
+
+ref:  
+https://blog.csdn.net/bigdog_1027/article/details/79090571
+
+### Aruco (working)
+
+ref:  
+https://github.com/UbiquityRobotics/fiducials/blob/kinetic-devel/aruco_detect/src/aruco_detect.cpp
+https://github.com/sturkmen72/opencv_samples/blob/master/14188-calc-eucliadian-distance-between-two-single-point.cpp
+https://github.com/warp1337/ros_aruco/blob/master/src/ros_aruco.cpp
+
+
