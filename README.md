@@ -18,8 +18,26 @@ sudo apt-get install ros-noetic-amcl
 ### Cartographer
 1) Online SLAM with TG15
 ```
+roslaunch ydlidar TG_base.launch
+roslaunch online_cortographer.launch
+```
+2) Offline SLAM with bag
+```
 roslaunch uav_nav uav_bag_to_map.launch bag_filename:=${HOME}/Document/bagfiles/2021-04-02-10-40-04.bag
 
+```
+3) map-build
+```
+- offline-cartographer slam
+roslaunch cartographer_ros uav_bag_to_map.launch bag_filename:=${HOME}/Document/bagfiles/2021-04-02-10-40-04.bag
+
+- pbstream save
+rosservice call /finish_trajectory 0
+rosservice call /write_state "{filename: '${HOME}/Document/map/bime_4f.bag.pbstream', include_unfinished_submaps: "true"}"
+
+- pbstream to rosmap
+rosrun cartographer_ros cartographer_pbstream_to_ros_map -map_filestem=/home/ubuntu/Document/map/bime_4fmap  -pbstream_filename=/home/ubuntu/Document/map/bime_4f.bag.pbstream
+#沒確定儲存完之前 cartographer 不能關掉
 ```
 ### Aruco Detect
 1) Usb cam with web_video_server
