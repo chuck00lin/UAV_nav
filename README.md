@@ -39,12 +39,22 @@ rosservice call /write_state "{filename: '${HOME}/Document/map/bime_4f.bag.pbstr
 rosrun cartographer_ros cartographer_pbstream_to_ros_map -map_filestem=/home/ubuntu/Document/map/bime_4fmap  -pbstream_filename=/home/ubuntu/Document/map/bime_4f.bag.pbstream
 #沒確定儲存完之前 cartographer 不能關掉
 ```
+
 ### Aruco Detect
 1) Usb cam with web_video_server
 ```
 roslaunch uav_nav usb_cam_test_video0.launch
 rosrun uav_nav aruco_detect
 rosrun web_video_server web_video_server
+```
+### Tools
+urdf check
+```
+roslaunch urdf_tutorial display.launch model:='$(find cartographer_ros)/urdf/backpack_2d.urdf'
+```
+tf tree
+```
+rosrun tf2_tools view_frames.py
 ```
 
 ## Error Shooting
