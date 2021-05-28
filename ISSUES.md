@@ -82,6 +82,8 @@ no transform from map to base_link
 ould not compute submap fading: Could not find a connection between 'map' and 'base_link' because they are not part of the same tree.Tf has two or more unconnected trees.
 ```
 - urdf: uav_lalala  
+- http://wiki.ros.org/urdf/XML/joint 
+- http://wiki.ros.org/navigation/Tutorials/RobotSetup/TF
 validation  
 ```
 apt-get install liburdfdom-tools
@@ -100,3 +102,20 @@ https://blog.csdn.net/tiancailx/article/details/78910317
 http://fugjo16.blogspot.com/2017/06/ros-urdf.html
 https://github.com/cartographer-project/cartographer_ros/blob/master/cartographer_ros/launch/backpack_2d.launch
 https://github.com/YDLIDAR/ydlidar_ros
+
+## [4]ROS
+### launching
+:ok_hand:solution: 
+> check if rospack is finded
+--error message-- 
+```
+lauch problems; ResourceNotFound
+//eg:
+ResourceNotFound: pow_analyzer
+
+ROS path [0]=/opt/ros/fuerte/share/ros
+
+ROS path [1]=/home/bojan/ros_workspace/gps_common
+
+ROS path [2]=/home/bojan/ros_workspace/lse_xsens_mti
+```
