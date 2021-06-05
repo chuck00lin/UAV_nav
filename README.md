@@ -20,6 +20,11 @@ sudo apt-get install ros-noetic-amcl
 ```
 roslaunch ydlidar TG_base.launch
 roslaunch online_cortographer.launch
+
+//one button version
+roslaunch l_online_cartographer
+//with ardupilot
+roslaunch mavros apm.launch fcu_url:=/dev/ttyAMA0:57600  
 ```
 2) Offline SLAM with bag
 ```
@@ -47,6 +52,13 @@ roslaunch uav_nav usb_cam_test_video0.launch
 rosrun uav_nav aruco_detect
 rosrun web_video_server web_video_server
 ```
+### MavROS
+connection
+```
+roslaunch mavros apm.launch fcu_url:=/dev/ttyAMA0:57600  
+roslaunch mavros apm.launch fcu_url:=udp://:14855@
+```
+
 ### Tools
 urdf check
 ```
