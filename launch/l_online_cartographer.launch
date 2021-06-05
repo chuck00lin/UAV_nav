@@ -13,22 +13,25 @@
     <param name="angle_min"    type="double" value="-180" />
     <param name="angle_max"    type="double" value="180" />
     <param name="range_min"    type="double" value="0.01" />
-    <param name="range_max"    type="double" value="32.0" />
+    <param name="range_max"    type="double" value="15.0" />
     <param name="ignore_array" type="string" value="" />
-    <param name="frequency"    type="double" value="10"/>
+    <param name="frequency"    type="double" value="12"/>
     <param name="samp_rate"    type="int"    value="20"/>
     <param name="isTOFLidar"    type="bool"   value="true"/>
   </node>
-  <node pkg="tf" type="static_transform_publisher" name="base_link_to_laser4"
-    args="0.2245 0.0 0.2 0.0 0.0  0.0 /base_footprint /base_link 40" />
 
-  <param name="/use_sim_time" value="false" />
+  <param name="robot_description"
+    textfile="$(find uav_nav)/urdf/uav_lalala.urdf" />  
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher"
+    type="robot_state_publisher" />
+
   <node name="cartographer_node" pkg="cartographer_ros"
       type="cartographer_node" args="
           -configuration_directory $(find uav_nav)/configuration_files
-          -configuration_basename l_online_cartographer.lua"
+          -configuration_basename tun_online_cartographer.lua"
       output="screen">
-    <remap from="scan" to="scan" />
+    <remap from="echoes" to="scan" />
   </node>
 
   <node name="cartographer_occupancy_grid_node" pkg="cartographer_ros"
@@ -43,5 +46,6 @@
             args="0 0 0 0 0 0 base_link laser 100" />
 
   <node name="rviz" pkg="rviz" type="rviz" required="true" 
-      args="-d $(find uav_nav)/configuration_files/rviz/l_online.rviz" /> 
+      args="-d $(find cartographer_ros)/configuration_files/demo_2d.rviz" /> 
+
 </launch>
