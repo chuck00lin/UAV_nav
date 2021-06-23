@@ -5,12 +5,23 @@ UAV pixhawk4-ROS-Ardupilot navigation
 dependency
 - ROS-noetic
 - Cartographer
+- Robot pose publisher
+```
+git clone https://github.com/GT-RAIL/robot_pose_publisher.git
+cd $HOME/ros_ws/src/robot_pose_publisher/src
+vi robot_pose_publisher.cpp
+# modify line 40 to look like below ("false" has been changed to "true")
+# line40: nh_priv.param<bool>("is_stamped", is_stamped, true);
+
+```
+- ROS package
 ```
 sudo apt-get install ros-noetic-move-base
 sudo apt-get install ros-noetic-amcl
 
 # check if installed: ls /opt/ros/noetic/lib/{find your package}
 ```
+** Build this **  
 - git clone to your ROS workspace
 - catkin build uav_sim
 
@@ -34,15 +45,24 @@ roslaunch uav_nav uav_bag_to_map.launch bag_filename:=${HOME}/Document/bagfiles/
 3) map-build
 ```
 - offline-cartographer slam
-roslaunch cartographer_ros uav_bag_to_map.launch bag_filename:=${HOME}/Document/bagfiles/2021-04-02-10-40-04.bag
+roslaunch uav_nav old_palyback_cartographer.launch bag_filename:=${HOME}/Document/bagfiles/(laser_frame).bag
+roslaunch uav_nav palyback_cartographer.launch bag_filename:=${HOME}/Document/bagfiles/(base_link).bag 
 
 - pbstream save
 rosservice call /finish_trajectory 0
-rosservice call /write_state "{filename: '${HOME}/Document/map/bime_4f.bag.pbstream', include_unfinished_submaps: "true"}"
+rosservice call /write_state "{filename: '${HOME}/Document/map/bime_4f.pbstream', include_unfinished_submaps: "true"}"
 
 - pbstream to rosmap
-rosrun cartographer_ros cartographer_pbstream_to_ros_map -map_filestem=/home/ubuntu/Document/map/bime_4fmap  -pbstream_filename=/home/ubuntu/Document/map/bime_4f.bag.pbstream
+rosrun cartographer_ros cartographer_pbstream_to_ros_map -map_filestem=/home/ubuntu/Document/map/bime_4fmap  -pbstream_filename=/home/ubuntu/Document/map/bime_4f.pbstream
 #沒確定儲存完之前 cartographer 不能關掉
+```
+4) localization
+```
+roslaunch uav_nav l_online_cartographer.launch
+//inspect the position
+rostopic echo /robot_pose
+//out put to UAV
+roslaunch mavros apm.launch fcu_url:=/dev/ttyAMA0:57600 
 ```
 
 ### Aruco Detect

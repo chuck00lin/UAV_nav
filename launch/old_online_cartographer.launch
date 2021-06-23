@@ -20,7 +20,7 @@
   <node name="cartographer_node" pkg="cartographer_ros"
       type="cartographer_node" args="
           -configuration_directory $(find uav_nav)/configuration_files
-          -configuration_basename uav_revo_lds.lua"
+          -configuration_basename old_online_cartographer.lua"
       output="screen">
     <remap from="scan" to="scan" />
   </node>
