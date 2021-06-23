@@ -29,8 +29,8 @@ sudo apt-get install ros-noetic-amcl
 ### Cartographer
 1) Online SLAM with TG15
 ```
-roslaunch ydlidar TG_base.launch
-roslaunch online_cortographer.launch
+roslaunch uav_nav TG_base.launch 
+roslaunch uav_nav online_cortographer_XXX.launch
 
 //one button version
 roslaunch l_online_cartographer
@@ -38,11 +38,6 @@ roslaunch l_online_cartographer
 roslaunch mavros apm.launch fcu_url:=/dev/ttyAMA0:57600  
 ```
 2) Offline SLAM with bag
-```
-roslaunch uav_nav uav_bag_to_map.launch bag_filename:=${HOME}/Document/bagfiles/2021-04-02-10-40-04.bag
-
-```
-3) map-build
 ```
 - offline-cartographer slam
 roslaunch uav_nav old_palyback_cartographer.launch bag_filename:=${HOME}/Document/bagfiles/(laser_frame).bag
@@ -56,7 +51,7 @@ rosservice call /write_state "{filename: '${HOME}/Document/map/bime_4f.pbstream'
 rosrun cartographer_ros cartographer_pbstream_to_ros_map -map_filestem=/home/ubuntu/Document/map/bime_4fmap  -pbstream_filename=/home/ubuntu/Document/map/bime_4f.pbstream
 #沒確定儲存完之前 cartographer 不能關掉
 ```
-4) localization
+3) localization
 ```
 roslaunch uav_nav l_online_cartographer.launch
 //inspect the position
