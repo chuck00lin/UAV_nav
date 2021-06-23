@@ -5,7 +5,7 @@
   <param name="/use_sim_time" value="true" />
 
   <param name="robot_description"
-    textfile="$(find cartographer_ros)/urdf/backpack_3d.urdf" />
+    textfile="$(find uav_nav)/urdf/uav_lalala.urdf" />
 
   <node name="robot_state_publisher" pkg="robot_state_publisher"
     type="robot_state_publisher" />
