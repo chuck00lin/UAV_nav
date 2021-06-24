@@ -21,7 +21,7 @@ sudo apt-get install ros-noetic-amcl
 
 # check if installed: ls /opt/ros/noetic/lib/{find your package}
 ```
-** Build this **  
+**Build this**  
 - git clone to your ROS workspace
 - catkin build uav_sim
 
@@ -46,10 +46,15 @@ roslaunch uav_nav palyback_cartographer.launch bag_filename:=${HOME}/Document/ba
 - pbstream save
 rosservice call /finish_trajectory 0
 rosservice call /write_state "{filename: '${HOME}/Document/map/bime_4f.pbstream', include_unfinished_submaps: "true"}"
-
+```
+```
 - pbstream to rosmap
+//1)only save map
 rosrun cartographer_ros cartographer_pbstream_to_ros_map -map_filestem=/home/ubuntu/Document/map/bime_4fmap  -pbstream_filename=/home/ubuntu/Document/map/bime_4f.pbstream
 #沒確定儲存完之前 cartographer 不能關掉
+
+//2)constum save map and save png/ply also
+roslaunch uav_nav assets_writer_ros_map.launch bag_filenames:=${HOME}/Document/bag/home-20210623_shorttest.bag pose_graph_filename:=${HOME}/Document/bag/home-20210623_shorttest.pbstream
 ```
 3) localization
 ```

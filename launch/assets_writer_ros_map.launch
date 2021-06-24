@@ -1,0 +1,20 @@
+<!--
+
+pbstream to rosmap (yaml+pbm)
+
+-->
+
+
+<launch>
+  <arg name="config_file" default="assets_writer_ros_map.lua"/>
+  <node name="cartographer_assets_writer" pkg="cartographer_ros" required="true"
+      type="cartographer_assets_writer" args="
+          -configuration_directory $(find uav_nav)/configuration_files
+          -configuration_basename $(arg config_file)
+          -urdf_filename $(find uav_nav)/urdf/uav_lalala.urdf
+          -bag_filenames $(arg bag_filename)
+          -pose_graph_filename $(arg pose_graph_filename)"
+      output="screen">
+  </node>
+</launch>
+
