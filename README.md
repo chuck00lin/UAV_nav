@@ -36,6 +36,9 @@ roslaunch uav_nav online_cortographer_XXX.launch
 roslaunch l_online_cartographer
 //with ardupilot
 roslaunch mavros apm.launch fcu_url:=/dev/ttyAMA0:57600  
+
+rosbag record -a -O XXX.bag
+
 ```
 2) Offline SLAM with bag
 ```
@@ -54,7 +57,7 @@ rosrun cartographer_ros cartographer_pbstream_to_ros_map -map_filestem=/home/ubu
 #沒確定儲存完之前 cartographer 不能關掉
 
 //2)constum save map and save png/ply also
-roslaunch uav_nav assets_writer_ros_map.launch bag_filenames:=${HOME}/Document/bag/home-20210623_shorttest.bag pose_graph_filename:=${HOME}/Document/bag/home-20210623_shorttest.pbstream
+roslaunch uav_nav assets_writer_ros_map.launch bag_filename:=${HOME}/Document/bag/home-20210623_shorttest.bag pose_graph_filename:=${HOME}/Document/bag/home-20210623_shorttest.pbstream
 ```
 3) localization
 ```
