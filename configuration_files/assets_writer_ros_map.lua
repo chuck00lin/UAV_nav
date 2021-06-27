@@ -11,7 +11,7 @@ options = {
     {
       action = "min_max_range_filter",
       min_range = 1.,
-      max_range = 60.,
+      max_range = 15.,
     },
     {
       action = "write_ros_map",
@@ -42,42 +42,42 @@ options = {
     --
     -- We write xrays again. These now use geometry and the intensities to
     -- color pixels - they look quite similar, just a little lighter.
-    {
-      action = "intensity_to_color",
-      min_intensity = 0.,
-      max_intensity = 4095.,
-    },
+    --{
+    --  action = "intensity_to_color",
+    --  min_intensity = 0.,
+    --  max_intensity = 4095.,
+    --},
 
-    {
-      action = "write_xray_image",
-      voxel_size = VOXEL_SIZE,
-      filename = "xray_xy_all_intensity",
-      transform = XY_TRANSFORM,
-    },
+    --{
+    --  action = "write_xray_image",
+    --  voxel_size = VOXEL_SIZE,
+    --  filename = "xray_xy_all_intensity",
+    --  transform = XY_TRANSFORM,
+    --},
     -- We also write a PLY file at this stage, because gray points look good.
     -- The points in the PLY can be visualized using
     -- https://github.com/cartographer-project/point_cloud_viewer.
-    -- {
-    --   action = "write_ply",
-    --   filename = "points.ply",
-    -- },
+    {
+      action = "write_ply",
+      filename = "points.ply",
+    },
 
     -- Now we recolor our points by frame and write another batch of X-Rays. It
     -- is visible in them what was seen by the horizontal and the vertical
     -- laser.
     -- origin: frame_id= horizontal_laser_link
-    {
-      action = "color_points",
-      frame_id = "laser_frame",
-      color = { 255., 0., 0. },
-    },
+    --{
+    --  action = "color_points",
+    --  frame_id = "base_link",
+    --  color = { 255., 0., 0. },
+    --},
 
-    {
-      action = "write_xray_image",
-      voxel_size = VOXEL_SIZE,
-      filename = "xray_xy_all_color",
-      transform = XY_TRANSFORM,
-    }
+    --{
+    --  action = "write_xray_image",
+    --  voxel_size = VOXEL_SIZE,
+    --  filename = "xray_xy_all_color",
+    --  transform = XY_TRANSFORM,
+    --},
   }
 }
 

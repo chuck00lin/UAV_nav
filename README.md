@@ -47,7 +47,7 @@ roslaunch uav_nav old_palyback_cartographer.launch bag_filename:=${HOME}/Documen
 roslaunch uav_nav palyback_cartographer.launch bag_filename:=${HOME}/Document/bagfiles/(base_link).bag 
 
 - pbstream save
-rosservice call /finish_trajectory 0
+(early finish): rosservice call /finish_trajectory 0
 rosservice call /write_state "{filename: '${HOME}/Document/map/bime_4f.pbstream', include_unfinished_submaps: "true"}"
 ```
 ```
