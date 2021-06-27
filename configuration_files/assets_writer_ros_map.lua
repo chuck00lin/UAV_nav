@@ -28,12 +28,12 @@ options = {
       action = "dump_num_points",
     },
     -- Gray X-Rays. These only use geometry to color pixels.
-    {
-      action = "write_xray_image",
-      voxel_size = VOXEL_SIZE,
-      filename = "xray_xy_all",
-      transform = XY_TRANSFORM,
-    },
+    -- {
+    --  action = "write_xray_image",
+    --  voxel_size = VOXEL_SIZE,
+    --  filename = "xray_xy_all",
+    -- transform = XY_TRANSFORM,
+    --},
 
     -- We now use the intensities to color our points. We apply a linear
     -- transform to clamp our intensity values into [0, 255] and then use this
@@ -66,18 +66,18 @@ options = {
     -- is visible in them what was seen by the horizontal and the vertical
     -- laser.
     -- origin: frame_id= horizontal_laser_link
-    --{
-    --  action = "color_points",
-    --  frame_id = "base_link",
-    --  color = { 255., 0., 0. },
-    --},
+    {
+      action = "color_points",
+      frame_id = "base_link",
+      color = { 255., 0., 0. },
+    },
 
-    --{
-    --  action = "write_xray_image",
-    --  voxel_size = VOXEL_SIZE,
-    --  filename = "xray_xy_all_color",
-    --  transform = XY_TRANSFORM,
-    --},
+    {
+      action = "write_xray_image",
+      voxel_size = VOXEL_SIZE,
+      filename = "xray_xy_all_color",
+     transform = XY_TRANSFORM,
+    },
   }
 }
 
