@@ -1,0 +1,27 @@
+<!--
+-->
+
+<launch>
+  <param name="/use_sim_time" value="true" />
+
+  <param name="robot_description"
+    textfile="$(find uav_nav)/urdf/uav_lalala.urdf" />
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher"
+    type="robot_state_publisher" />
+  <node name="cartographer_node" pkg="cartographer_ros"
+      type="cartographer_node" args="
+          -configuration_directory $(find uav_nav)/configuration_files
+          -configuration_basename playback_cartographer_TUN.lua"
+      output="screen">
+    <remap from="scan" to="scan" />
+  </node>
+
+  <node name="cartographer_occupancy_grid_node" pkg="cartographer_ros"
+      type="cartographer_occupancy_grid_node" args="-resolution 0.05" />
+
+  <node name="rviz" pkg="rviz" type="rviz" required="true"
+      args="-d $(find cartographer_ros)/configuration_files/demo_2d.rviz" />
+  <node name="playbag" pkg="rosbag" type="play"
+      args="--clock $(arg bag_filename)" />
+</launch>
